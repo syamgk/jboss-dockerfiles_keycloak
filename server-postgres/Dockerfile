@@ -1,9 +1,9 @@
 FROM jboss/keycloak:latest
 
 USER root
-
-RUN chown -R 1000:1000 /opt/jboss && chmod -R ug+rw /opt/jboss &&  setfacl -R -m u:1000:rwX /opt/jboss && setfacl -R -m d:u:1000:rw /opt/jboss
-
+RUN mkdir -p /opt/jboss/keycloak/standalone/data && \
+    chown -R 1000:0 /opt/jboss/keycloak/standalone && \
+    chmod -R ug+rw /opt/jboss/keycloak/standalone
 USER jboss
 
 ADD changeDatabase.xsl /opt/jboss/keycloak/
