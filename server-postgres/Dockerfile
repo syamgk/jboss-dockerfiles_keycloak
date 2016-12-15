@@ -2,7 +2,7 @@ FROM jboss/keycloak:latest
 
 USER root
 
-RUN setfacl -R -m u:1000:rwX /opt/jboss && setfacl -R -m d:u:1000:rw /opt/jboss
+RUN chown -R 1000:1000 /opt/jboss && chmod -R ug+rw /opt/jboss &&  setfacl -R -m u:1000:rwX /opt/jboss && setfacl -R -m d:u:1000:rw /opt/jboss
 
 USER jboss
 
